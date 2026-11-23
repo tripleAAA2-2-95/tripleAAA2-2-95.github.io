@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Izi Clean — демо-версия сайта</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e2a2f;
+    --muted: #4f6b70;
+    --bg: #f5f8f7;
+    --card: #ffffff;
+    --accent: #11a37f;
+    --accent-dark: #0b7a5f;
+    --sun: #ffd166;
+    --line: #dde7e5;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Manrope', system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  .demo-bar { background: var(--ink); color: #cfe7e1; font-size: 13px; text-align: center; padding: 8px 12px; }
+
+  header { position: sticky; top: 0; z-index: 10; background: rgba(245,248,247,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; }
+  .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--accent); display: grid; place-items: center; }
+  .nav-links { display: flex; gap: 26px; font-weight: 500; font-size: 15px; }
+  .nav-links a { text-decoration: none; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; font: inherit; font-weight: 700;
+         text-decoration: none; padding: 13px 22px; border-radius: 999px; transition: transform .15s, background .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+
+  .hero { padding: 72px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+  .tag { display: inline-block; background: #e3f5ef; color: var(--accent-dark); font-weight: 700; font-size: 13px; padding: 6px 12px; border-radius: 999px; margin-bottom: 18px; }
+  h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lead { font-size: 19px; color: var(--muted); margin: 18px 0 28px; max-width: 34em; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .facts { display: flex; gap: 28px; margin-top: 34px; flex-wrap: wrap; }
+  .fact b { display: block; font-size: 26px; font-weight: 800; }
+  .fact span { color: var(--muted); font-size: 14px; }
+
+  .hero-art { background: var(--card); border-radius: 28px; padding: 26px; box-shadow: 0 20px 50px rgba(14,42,47,.08); }
+  .hero-art svg { width: 100%; height: auto; display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: clamp(28px, 3.6vw, 38px); font-weight: 800; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .sub { color: var(--muted); margin-bottom: 34px; font-size: 17px; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; }
+  .card h3 { font-size: 20px; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: 15px; flex: 1; }
+  .price { margin-top: 18px; font-size: 22px; font-weight: 800; }
+  .price small { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .card.featured { border: 2px solid var(--accent); position: relative; }
+  .badge { position: absolute; top: -12px; right: 20px; background: var(--sun); font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 999px; }
+
+  .calc { background: var(--ink); color: #fff; border-radius: 28px; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .calc h2 { color: #fff; }
+  .calc .sub { color: #a9c9c2; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 15px; }
+  .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+  .seg button { font: inherit; font-weight: 600; font-size: 14px; padding: 9px 14px; border-radius: 999px; border: 1.5px solid #3d5b60;
+                background: transparent; color: #dcebe8; cursor: pointer; }
+  .seg button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .range-val { font-weight: 800; }
+  .check { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 15px; color: #dcebe8; cursor: pointer; }
+  .check input { width: 18px; height: 18px; accent-color: var(--accent); }
+  .result { background: #163a40; border-radius: 22px; padding: 30px; text-align: center; }
+  .result .label { color: #a9c9c2; font-size: 15px; }
+  .result .sum { font-size: 46px; font-weight: 800; margin: 6px 0 4px; }
+  .result .time { color: #a9c9c2; margin-bottom: 20px; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px;
+                  background: #e3f5ef; color: var(--accent-dark); font-weight: 800; margin-bottom: 14px; }
+  .step h3 { font-size: 17px; margin-bottom: 6px; }
+  .step p { color: var(--muted); font-size: 14.5px; }
+
+  .guar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .g { display: flex; gap: 14px; align-items: flex-start; }
+  .g-ico { flex: 0 0 44px; height: 44px; border-radius: 14px; background: #fff4d6; display: grid; place-items: center; }
+  .g h3 { font-size: 17px; margin-bottom: 4px; }
+  .g p { color: var(--muted); font-size: 14.5px; }
+
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; margin-bottom: 12px; }
+  summary { font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
+  summary::after { content: '+'; font-size: 22px; line-height: 1; color: var(--accent); }
+  details[open] summary::after { content: '–'; }
+  details p { color: var(--muted); margin-top: 10px; }
+
+  .final { text-align: center; background: linear-gradient(135deg, #11a37f, #0b7a5f); color: #fff; border-radius: 28px; padding: 56px 24px; }
+  .final h2 { color: #fff; }
+  .final p { opacity: .9; margin: 8px 0 26px; font-size: 17px; }
+  .final .btn { background: #fff; color: var(--accent-dark); }
+
+  footer { padding: 34px 0 44px; color: var(--muted); font-size: 14px; text-align: center; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .calc { grid-template-columns: 1fr; }
+    .cards, .guar { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .nav .btn { padding: 10px 14px; font-size: 14px; white-space: nowrap; }
+    .logo { white-space: nowrap; font-size: 18px; }
+    .calc { padding: 28px; }
+  }
+
+  .demo-bar { background: #2b2b2b; color: #f1f1f1; }
+  .demo-bar b { color: #fff; }
+  .rating { display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-weight:700; font-size:14px; margin-bottom:18px; }
+  .rating .star { color:#f5a623; }
+  .row { display:flex; gap:10px; }
+  .row .field { flex:1; }
+  .num { width:100%; font:inherit; font-weight:700; font-size:18px; padding:12px 14px; border-radius:12px; border:1.5px solid #3d5b60; background:transparent; color:#fff; }
+  .qty { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid #2a4a50; color:#dcebe8; font-size:15px; }
+  .qty .ctl { display:flex; align-items:center; gap:10px; }
+  .qty button { width:34px; height:34px; border-radius:10px; border:1.5px solid #3d5b60; background:transparent; color:#fff; font:inherit; font-weight:800; cursor:pointer; }
+  .qty .n { min-width:22px; text-align:center; font-weight:800; }
+  .qty small { color:#a9c9c2; white-space:nowrap; }
+  .note { color:#a9c9c2; font-size:13px; margin-top:12px; }
+  .contacts { display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+  .contacts .card p { flex:0; }
+  @media (max-width: 900px) { .contacts { grid-template-columns:1fr; } }
+:root{--accent:#3b6fd4;--accent-dark:#2a54a8;} .tag,.step::before{background:#e3ecfb;color:#2a54a8;} .final{background:linear-gradient(135deg,#3b6fd4,#2a54a8);} .final .btn{color:#2a54a8;}</style>
+</head>
+<body>
+  <div class="demo-bar"><b>Демо-версия</b>, подготовлена как предложение для Izi Clean. Это не официальный сайт компании. Цены в демо примерные.</div>
+  <header>
+    <div class="wrap nav">
+      <div class="logo"><div class="logo-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></div>Izi Clean</div>
+      <nav class="nav-links"><a href="#prices">Цены</a><a href="#calc">Калькулятор</a><a href="#how">Как работаем</a><a href="#contacts">Контакты</a></nav>
+      <a class="btn btn-primary" href="#calc">Рассчитать чистку</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="rating"><span class="star">★</span> 5,0 в 2ГИС · 46 оценок</div>
+          <span class="tag">Химчистка мягкой мебели на дому · Алматы</span>
+          <h1>Диван <em>как новый</em> — за пару часов, у вас дома</h1>
+          <p class="lead">Чистим диваны, кресла, матрасы, стулья и изголовья кроватей. Убираем пятна от кофе, сока, фломастеров и следы животных, выводим запахи. Посчитайте цену за 30 секунд.</p>
+          <div class="hero-cta"><a class="btn btn-primary" href="#calc">Узнать цену</a><a class="btn btn-ghost" href="#prices">Услуги и цены</a></div>
+          <div class="facts"><div class="fact"><b>Выезд на дом</b><span>мастер приезжает к вам</span></div><div class="fact"><b>Без запаха</b><span>химии после чистки</span></div><div class="fact"><b>В выходные</b><span>тоже работаем</span></div></div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><svg viewBox="0 0 400 320"><rect width="400" height="320" rx="22" fill="#eef3fb"/>
+<g transform="translate(50 90)"><rect x="20" y="0" width="260" height="90" rx="22" fill="#6f8fc9"/><rect x="0" y="60" width="60" height="90" rx="18" fill="#5a79b5"/><rect x="240" y="60" width="60" height="90" rx="18" fill="#5a79b5"/>
+<rect x="40" y="80" width="220" height="60" rx="14" fill="#86a3d8"/><path d="M150 84 v52" stroke="#6f8fc9" stroke-width="3"/><rect x="30" y="150" width="14" height="20" rx="4" fill="#3d4f73"/><rect x="256" y="150" width="14" height="20" rx="4" fill="#3d4f73"/></g>
+<g fill="#ffd166"><path d="M90 50 l5 12 l12 5 l-12 5 l-5 12 l-5 -12 l-12 -5 l12 -5z"/><path d="M300 60 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3z"/><path d="M340 250 l4 9 l9 4 l-9 4 l-4 9 l-4 -9 l-9 -4 l9 -4z"/></g>
+<g fill="#cfe0f7"><circle cx="70" cy="270" r="10"/><circle cx="95" cy="282" r="6"/><circle cx="120" cy="268" r="8"/></g></svg></div>
+      </div>
+    </section>
+    <section id="prices"><div class="wrap"><h2>Услуги и цены</h2><p class="sub">Цену называем до начала работы.</p><div class="cards"><div class="card featured"><span class="badge">Чаще всего заказывают</span><h3>Диваны</h3><p>Прямые, угловые, раскладные. Пятна, засаленные подлокотники, детские художества.</p><div class="price">от 10 000 ₸</div></div><div class="card"><h3>Матрасы</h3><p>Выводим застарелые пятна и неприятные запахи. Детские матрасы — безопасной химией.</p><div class="price">от 7 000 ₸</div></div><div class="card"><h3>Кресла и стулья</h3><p>Тканевые кресла, стулья, изголовья кроватей, деликатные ткани.</p><div class="price">от 1 500 ₸</div></div></div></div></section>
+    <section id="calc"><div class="wrap"><div class="calc">
+      <div><h2>Калькулятор химчистки</h2><p class="sub">Отметьте, что нужно почистить — цена посчитается сразу.</p><div class="field"><div class="qty"><span>Диван 2-местный <small>· 10 000 ₸</small></span><span class="ctl"><button data-d="-1" data-i="0" aria-label="меньше">−</button><span class="n" id="n0">0</span><button data-d="1" data-i="0" aria-label="больше">+</button></span></div><div class="qty"><span>Диван 3-местный <small>· 12 000 ₸</small></span><span class="ctl"><button data-d="-1" data-i="1" aria-label="меньше">−</button><span class="n" id="n1">1</span><button data-d="1" data-i="1" aria-label="больше">+</button></span></div><div class="qty"><span>Диван угловой <small>· 16 000 ₸</small></span><span class="ctl"><button data-d="-1" data-i="2" aria-label="меньше">−</button><span class="n" id="n2">0</span><button data-d="1" data-i="2" aria-label="больше">+</button></span></div><div class="qty"><span>Кресло <small>· 3 000 ₸</small></span><span class="ctl"><button data-d="-1" data-i="3" aria-label="меньше">−</button><span class="n" id="n3">0</span><button data-d="1" data-i="3" aria-label="больше">+</button></span></div><div class="qty"><span>Матрас односпальный <small>· 7 000 ₸</small></span><span class="ctl"><button data-d="-1" data-i="4" aria-label="меньше">−</button><span class="n" id="n4">0</span><button data-d="1" data-i="4" aria-label="больше">+</button></span></div><div class="qty"><span>Матрас двуспальный <small>· 10 000 ₸</small></span><span class="ctl"><button data-d="-1" data-i="5" aria-label="меньше">−</button><span class="n" id="n5">0</span><button data-d="1" data-i="5" aria-label="больше">+</button></span></div><div class="qty"><span>Стул <small>· 1 500 ₸</small></span><span class="ctl"><button data-d="-1" data-i="6" aria-label="меньше">−</button><span class="n" id="n6">0</span><button data-d="1" data-i="6" aria-label="больше">+</button></span></div><div class="qty"><span>Изголовье кровати <small>· 5 000 ₸</small></span><span class="ctl"><button data-d="-1" data-i="7" aria-label="меньше">−</button><span class="n" id="n7">0</span><button data-d="1" data-i="7" aria-label="больше">+</button></span></div></div></div>
+      <div class="result"><div class="label">Стоимость химчистки</div><div class="sum" id="sum">—</div><div class="time" id="time">—</div>
+        <a class="btn btn-primary" id="wa" href="https://wa.me/77078788844" target="_blank" rel="noopener">Заказать в WhatsApp</a>
+        <div class="note">Цены в демо примерные — на вашем сайте поставим ваши.</div></div>
+    </div></div></section>
+    <section id="how"><div class="wrap"><h2>Как мы работаем</h2><p class="sub">От заявки до чистого дивана — без лишних звонков.</p><div class="steps"><div class="step"><h3>Заявка</h3><p>Считаете цену в калькуляторе и пишете в WhatsApp.</p></div><div class="step"><h3>Время</h3><p>Согласуем удобный день, можно на выходные.</p></div><div class="step"><h3>Чистка</h3><p>Мастер приезжает со своим оборудованием и химией.</p></div><div class="step"><h3>Результат</h3><p>Проверяете работу и оплачиваете наличными или по QR.</p></div></div></div></section>
+    <section id="faq"><div class="wrap"><h2>Частые вопросы</h2><p class="sub">Ответы на то, что спрашивают чаще всего.</p><details><summary>Сколько сохнет диван?</summary><p>Обычно несколько часов, в зависимости от ткани и толщины наполнителя.</p></details><details><summary>Химия безопасна для детей и животных?</summary><p>Да, используем средства, которые не оставляют запаха после чистки.</p></details><details><summary>Можно заказать на выходные?</summary><p>Да, работаем и в выходные. Лучше записаться заранее.</p></details></div></section>
+    <section id="contacts"><div class="wrap"><h2>Контакты</h2><p class="sub">Пишите в WhatsApp — ответим и рассчитаем точную цену.</p><div class="contacts"><div class="card"><h3>Адрес</h3><p>Алматы, ул. Бериктас, 52/1, мкр. Нур Алатау</p></div><div class="card"><h3>Время работы</h3><p>С 08:00, выезд по записи</p></div><div class="card"><h3>Оплата</h3><p>Наличными или по QR-коду</p></div></div></div></section>
+    <section><div class="wrap"><div class="final"><h2>Вернём мебели свежий вид</h2><p>Посчитайте цену и запишитесь за минуту.</p><a class="btn" href="#calc">Рассчитать чистку</a></div></div></section>
+  </main>
+  <footer><div class="wrap">Демо-версия сайта для Izi Clean · не официальный сайт · Цены в демо примерные.</div></footer>
+<script>
+const PHONE = "77078788844";
+const fmt = n => Math.round(n).toLocaleString('ru-RU').replace(/,/g,' ').replace(/\u00a0/g,' ') + ' ₸';
+
+const IT=[["Диван 2-местный", 10000, 0], ["Диван 3-местный", 12000, 1], ["Диван угловой", 16000, 0], ["Кресло", 3000, 0], ["Матрас односпальный", 7000, 0], ["Матрас двуспальный", 10000, 0], ["Стул", 1500, 0], ["Изголовье кровати", 5000, 0]]; const Q=IT.map(x=>x[2]);
+function recalc(){
+  let total=0, parts=[];
+  IT.forEach((x,i)=>{ document.getElementById('n'+i).textContent=Q[i]; if(Q[i]>0){ total+=x[1]*Q[i]; parts.push(x[0]+' — '+Q[i]); } });
+  document.getElementById('sum').textContent=total?fmt(total):'0 ₸';
+  document.getElementById('time').textContent=parts.length?parts.length+' поз. в заказе':'Выберите, что почистить';
+  const msg='Здравствуйте! Хочу заказать химчистку мебели (Izi Clean): '+parts.join(', ')+'. По калькулятору: '+fmt(total)+'. Когда сможете приехать?';
+  document.getElementById('wa').href='https://wa.me/'+PHONE+'?text='+encodeURIComponent(msg);
+}
+document.querySelectorAll('.qty button').forEach(b=>b.addEventListener('click',()=>{const i=+b.dataset.i;Q[i]=Math.max(0,Math.min(20,Q[i]+ +b.dataset.d));recalc();}));
+recalc();
+
+</script>
+</body>
+</html>
